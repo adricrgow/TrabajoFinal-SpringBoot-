@@ -1,7 +1,6 @@
 package TrabajoFinalSpringBoot.Web.controller;
 
 import TrabajoFinalSpringBoot.Web.model.LibroFrontend;
-import TrabajoFinalSpringBoot.Web.model.PersonaFrontend;
 import TrabajoFinalSpringBoot.Web.service.ApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +26,7 @@ public class FrontendController {
             List<LibroFrontend> libros = service.obtenerTodosLosLibros(titulo, autor, inicio, fin);
             model.addAttribute("libros", libros);
         } catch (Exception e) {
-            model.addAttribute("error", "Error: No se pudo contectar con la API (puerto 8081). ¿Está encendida?");
+            model.addAttribute("error", "Error: No se pudo contectar con la API (puerto 8081).");
         }
         return "index";
     }

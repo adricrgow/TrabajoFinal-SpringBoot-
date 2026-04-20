@@ -1,8 +1,6 @@
 package TrabajoFinalSpringBoot.Web.service;
 
 import TrabajoFinalSpringBoot.Web.model.LibroFrontend;
-import TrabajoFinalSpringBoot.Web.model.PersonaFrontend;
-
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
