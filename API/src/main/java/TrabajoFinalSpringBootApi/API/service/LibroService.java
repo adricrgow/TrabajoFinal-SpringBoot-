@@ -37,6 +37,7 @@ public class LibroService {
             existente.setPrecio(libroActualizado.getPrecio());
             existente.setAnio(libroActualizado.getAnio());
             existente.setImagen(libroActualizado.getImagen());
+            existente.setDescripcion(libroActualizado.getDescripcion());
             return repository.save(existente);
         }
         return null; // no existe
@@ -63,5 +64,9 @@ public class LibroService {
 
     public List<Libro> buscarEntreAnios(Integer inicio, Integer fin) {
         return repository.findByAnioBetween(inicio, fin);
+    }
+
+    public List<Libro> buscarPorDescripcion(String descripcion) {
+        return repository.findByDescripcionContainingIgnoreCase(descripcion);
     }
 }

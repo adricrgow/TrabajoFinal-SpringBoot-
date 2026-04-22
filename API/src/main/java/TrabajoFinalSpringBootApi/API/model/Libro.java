@@ -17,6 +17,7 @@ public class Libro {
     private Double precio;
     private Integer anio; // usamos 'anio' para evitar problemas con la 'ñ'
     private String imagen;
+    private String descripcion;
     
     // Getters y Setters
     public Long getId() { return id; }
@@ -36,4 +37,7 @@ public class Libro {
 
     public String getImagen() { return imagen; }
     public void setImagen(String imagen) { this.imagen = imagen; }
+
+    public String getDescripcion() { return descripcion; }
+    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
 }

@@ -21,9 +21,10 @@ public class FrontendController {
                         @RequestParam(required = false) String titulo,
                         @RequestParam(required = false) String autor,
                         @RequestParam(required = false) Integer inicio,
+                        @RequestParam(required = false) String descripcion,
                         @RequestParam(required = false) Integer fin) {
         try {
-            List<LibroFrontend> libros = service.obtenerTodosLosLibros(titulo, autor, inicio, fin);
+            List<LibroFrontend> libros = service.obtenerTodosLosLibros(titulo, autor, descripcion, inicio, fin);
             model.addAttribute("libros", libros);
         } catch (Exception e) {
             model.addAttribute("error", "Error: No se pudo contectar con la API (puerto 8081).");
@@ -68,5 +69,16 @@ public class FrontendController {
     @GetMapping("/cv")
     public String mostrarCV() {
         return "cv";
+    }
+
+    @GetMapping("/libros")
+    public String listarLibros(Model model) {
+        try {
+            List<LibroFrontend> libros = service.obtenerTodosLosLibros(null, null, null, null, null);
+            model.addAttribute("libros", libros);
+        } catch (Exception e) {
+            model.addAttribute("error", "Error al cargar los libros.");
+        }
+        return "libros";
     }
 }

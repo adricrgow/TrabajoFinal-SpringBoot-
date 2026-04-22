@@ -15,7 +15,7 @@ public class ApiService {
     private final String API_LIBROS = "http://localhost:8081/api/libros";
     private final RestTemplate restTemplate = new RestTemplate();
 
-    public List<LibroFrontend> obtenerTodosLosLibros(String titulo, String autor, Integer inicio, Integer fin) {
+    public List<LibroFrontend> obtenerTodosLosLibros(String titulo, String autor, String descripcion, Integer inicio, Integer fin) {
         String url = API_LIBROS;
         
         if (inicio != null && fin != null) {
@@ -24,6 +24,8 @@ public class ApiService {
             url += "/buscar/autor?autor=" + autor;
         } else if (titulo != null && !titulo.isEmpty()) {
             url += "/buscar/titulo?titulo=" + titulo;
+        } else if (descripcion != null && !descripcion.isEmpty()) {
+            url += "/buscar/descripcion?descripcion=" + descripcion;
         }
         
         ResponseEntity<List<LibroFrontend>> response = restTemplate.exchange(

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Libros | Biblioteca</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3) !important;
+        }
+        .card-img-top {
+            height: 350px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .price-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            color: #2ecc71;
+        }
+    </style>
+</head>
+<body>
+
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <div class="container py-5 animate-fade-in">
+        <div class="text-center mb-5">
+            <h1 class="fw-bold display-4 mb-2">Nuestro Catálogo</h1>
+            <p class="text-secondary lead">Explora nuestra colección de libros disponibles</p>
+            <div class="mx-auto" style="width: 60px; height: 4px; background: var(--primary-color, #0d6efd); border-radius: 2px;"></div>
+        </div>
+
+        <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+        <div th:if="${libros == null or libros.empty}" class="text-center py-5">
+            <div class="glass-panel p-5">
+                <i class="fas fa-book-open fa-4x mb-3 text-secondary"></i>
+                <h3>No hay libros en el catálogo todavía</h3>
+                <p class="text-secondary">¡Sé el primero en añadir uno!</p>
+                <a th:href="@{/nuevo}" class="btn btn-primary rounded-pill px-4 mt-3">Añadir Libro</a>
+            </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4" th:if="${libros != null and !libros.empty}">
+            <div class="col" th:each="libro : ${libros}">
+                <div class="card h-100 glass-panel shadow-sm">
+                    <div class="position-relative">
+                        <img th:src="${libro.imagen != null and !libro.imagen.empty ? libro.imagen : 'https://images.unsplash.com/photo-1543005157-865a502f9ed7?q=80&w=1000&auto=format&fit=crop'}" 
+                             class="card-img-top" 
+                             th:alt="${libro.titulo}">
+                        <div class="price-badge" th:text="${libro.precio != null ? libro.precio + ' €' : 'Gratis'}"></div>
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-bold text-white mb-1" th:text="${libro.titulo}">Título del Libro</h5>
+                        <p class="text-primary small mb-3"><i class="fas fa-user-edit me-1"></i> <span th:text="${libro.autor}">Autor</span></p>
+                        
+                        <p class="card-text text-secondary mb-4" th:text="${libro.descripcion != null and !libro.descripcion.empty ? libro.descripcion : 'Sin descripción disponible para este ejemplar.'}">
+                            Descripción corta del libro...
+                        </p>
+                        
+                        <div class="mt-auto d-flex justify-content-between align-items-center">
+                            <span class="text-secondary small"><i class="far fa-calendar-alt me-1"></i> <span th:text="${libro.anio}">2024</span></span>
+                            <div class="btn-group">
+                                <a th:href="@{/editar/{id}(id=${libro.id})}" class="btn btn-sm btn-outline-info rounded-circle me-2" title="Editar">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a th:href="@{/borrar/{id}(id=${libro.id})}" onclick="return confirm('¿Eliminar este libro?');" class="btn btn-sm btn-outline-danger rounded-circle" title="Eliminar">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent border-top-0 pb-3">
+                        <small class="text-body-secondary"><i class="fas fa-barcode me-1"></i> ID: <span th:text="${libro.id}">0</span></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -17,4 +17,7 @@ public interface LibroRepository extends JpaRepository<Libro, Long> {
     
     // Buscar entre años (Usando los métodos especiales del enlace de GeeksforGeeks)
     List<Libro> findByAnioBetween(Integer startYear, Integer endYear);
+
+    // Buscar por descripción
+    List<Libro> findByDescripcionContainingIgnoreCase(String descripcion);
 }

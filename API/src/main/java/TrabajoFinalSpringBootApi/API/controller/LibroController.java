@@ -60,4 +60,10 @@ public class LibroController {
     public List<Libro> buscarEntreAnios(@RequestParam Integer inicio, @RequestParam Integer fin) {
         return service.buscarEntreAnios(inicio, fin);
     }
+
+    // Buscar por descripción
+    @GetMapping("/buscar/descripcion")
+    public List<Libro> buscarPorDescripcion(@RequestParam String descripcion) {
+        return service.buscarPorDescripcion(descripcion);
+    }
 }
