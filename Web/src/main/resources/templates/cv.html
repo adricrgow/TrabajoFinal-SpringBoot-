@@ -47,15 +47,18 @@
 
     <div class="w-full flex justify-center py-8">
         <!-- Contenedor tamaño A4 -->
-        <div class="page-container bg-white w-full max-w-[21cm] min-h-[29.7cm] p-10 md:p-14 shadow-lg relative">
+        <!-- Esta linea de codigo hacia antes que los colores fueran blanco y 
+          los separadores fueran negros y ahora con añadir el text-gray-900 ya se arregló-->
+        <div
+            class="page-container bg-white w-full max-w-[21cm] min-h-[29.7cm] p-10 md:p-14 shadow-lg relative text-gray-900">
 
             <!-- Encabezado -->
             <header class="flex flex-col md:flex-row items-center md:items-start border-b pb-6 mb-6">
                 <!-- Foto de Perfil (Tamaño grande como solicitaste) -->
                 <div
                     class="w-[140px] h-[180px] bg-gray-100 border-2 border-gray-300 flex items-center justify-center text-gray-400 mb-6 md:mb-0 md:mr-8 overflow-hidden rounded shadow-sm shrink-0 relative">
-                    <i class="fas fa-user text-5xl"></i>
-                    <span class="absolute bottom-2 text-xs text-center px-2">Inserta tu foto aquí</span>
+                    <img src="https://imgs.search.brave.com/JoRVGPRzohwoo7C7VABbuhVLPT6lKbOBq_3RkTXC8jk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJzLWNsYW4u/Y29tL3dwLWNvbnRl/bnQvdXBsb2Fkcy8y/MDIyLzExL2dvZC1v/Zi13YXIta3JhdG9z/LXBmcC0zNS5qcGc"
+                        class="w-full h-full object-cover">
                 </div>
 
                 <!-- Información Personal -->
@@ -84,7 +87,7 @@
                     <h3 class="text-2xl text-blue-600 font-light">Perfil Profesional</h3>
                     <div class="section-line"></div>
                 </div>
-                <p class="text-sm leading-relaxed text-justify">
+                <p class="text-sm mt-1 text-gray-600 text-justify">
                     Profesional comprometido, con gran capacidad de aprendizaje y persistencia. Buena persona, estudioso
                     y
                     trabajador; siempre dispuesto a ayudar a mi entorno. Enfocado en el desarrollo de aplicaciones web y
@@ -149,7 +152,8 @@
                     <div class="w-full sm:w-1/4 text-sm text-gray-500 font-medium">3 meses</div>
                     <div class="w-full sm:w-3/4">
                         <h4 class="font-bold text-gray-800">Técnico de Mantenimiento IT</h4>
-                        <div class="text-sm text-blue-600 italic">Servicio Técnico, Huércal-Overa</div>
+                        <div class="text-sm text-blue-600 italic">Servicio Técnico Empresa : Informatica Geek,
+                            Albox-Almería </div>
                         <p class="text-sm mt-1 text-gray-600">Mantenimiento de hardware, diagnóstico de fallos en
                             equipos y
                             optimización de sistemas operativos.</p>
@@ -218,11 +222,10 @@
                     </div>
 
                     <ul class="text-sm space-y-2">
-                        <li><span class="font-bold text-gray-700">Web:</span> HTML5, CSS3, JavaScript</li>
-                        <li><span class="font-bold text-gray-700">Sistemas:</span> Linux, Windows, Redes</li>
-                        <li><span class="font-bold text-gray-700">IA:</span> Inteligencia Generativa y Prompting (2025)
-                        </li>
-                        <li><span class="font-bold text-gray-700">Idiomas:</span> Inglés (Nivel B2 Certificado)</li>
+                        <li><span class="font-bold">Web:</span> HTML5, CSS3, JavaScript</li>
+                        <li><span class="font-bold">Sistemas:</span> Linux, Windows, Redes</li>
+                        <li><span class="font-bold">IA:</span> Inteligencia Generativa y Prompting (2025)</li>
+                        <li><span class="font-bold">Idiomas:</span> Inglés (Nivel B2 Certificado)</li>
                     </ul>
                 </section>
             </div>

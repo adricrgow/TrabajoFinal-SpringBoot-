@@ -11,6 +11,7 @@
 }
 
 body {
+    padding-top: 70px;
     background-color: var(--bg-color);
     color: var(--text-primary);
     font-family: 'Outfit', sans-serif;
@@ -32,10 +33,13 @@ body {
     border-radius: 16px;
 }
 
+/* Navbar Arreglado era una mezcla de conflictos entre librerías y 
+un problema visual de transparencias contra el fondo blanco del papel */
 .navbar {
-    background: rgba(15, 23, 42, 0.8) !important;
+    background: var(--bg-color) !important;
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1050 !important;
 }
 
 .navbar-brand {
@@ -56,6 +60,16 @@ body {
 .nav-link.active {
     color: var(--text-primary) !important;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Conflicto arreglado Navbar Tailwind vs Bootstrap */
+.collapse.navbar-collapse {
+    visibility: visible !important;
+}
+
+.navbar .container {
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
 /* Custom Table */
