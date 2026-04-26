@@ -7,43 +7,46 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+// Aquí pongo toda la lógica de negocio. El controlador llama a este servicio, 
+// y este servicio se comunica con el repositorio (base de datos).
 @Service
 public class LibroService {
 
     @Autowired
     private LibroRepository repository;
 
-    // CREATE
+    // CREATE - Crear un libro nuevo
     public Libro crear(Libro libro) {
-        return repository.save(libro); // JPA asigna ID automáticamente
+        return repository.save(libro); // JPA le asigna el ID de forma automática
     }
 
-    // READ - obtener todos
+    // READ - Obtener todos los libros de la base de datos
     public List<Libro> listar() {
         return repository.findAll();
     }
 
-    // READ - obtener por id
+    // READ - Obtener un libro en específico usando su ID
     public Libro buscarPorId(long id) {
-        return repository.findById(id).orElse(null);
+        return repository.findById(id).orElse(null); // Devuelvo null si no lo encuentra
     }
 
-    // UPDATE
+    // UPDATE - Actualizar los datos de un libro existente
     public Libro actualizar(long id, Libro libroActualizado) {
         Libro existente = repository.findById(id).orElse(null);
         if (existente != null) {
+            // Actualizo campo por campo
             existente.setTitulo(libroActualizado.getTitulo());
             existente.setAutor(libroActualizado.getAutor());
             existente.setPrecio(libroActualizado.getPrecio());
             existente.setAnio(libroActualizado.getAnio());
             existente.setImagen(libroActualizado.getImagen());
             existente.setDescripcion(libroActualizado.getDescripcion());
-            return repository.save(existente);
+            return repository.save(existente); // Guardo los cambios
         }
-        return null; // no existe
+        return null; // Si no existe, devuelvo null
     }
 
-    // DELETE
+    // DELETE - Eliminar un libro
     public String eliminar(long id) {
         Libro existente = repository.findById(id).orElse(null);
         if (existente != null) {
@@ -53,7 +56,8 @@ public class LibroService {
         return "Libro " + id + " no encontrado";
     }
 
-    // BUSCAR
+    // MÉTODOS DE BÚSQUEDA PERSONALIZADOS (Llaman a los métodos mágicos del repositorio)
+    
     public List<Libro> buscarPorTitulo(String titulo) {
         return repository.findByTituloContainingIgnoreCase(titulo);
     }

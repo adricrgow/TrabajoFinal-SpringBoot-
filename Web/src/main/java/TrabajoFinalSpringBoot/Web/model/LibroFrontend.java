@@ -1,6 +1,9 @@
 package TrabajoFinalSpringBoot.Web.model;
 
+// Esta clase es como un espejo del modelo Libro de la API.
+// La uso en el Frontend para recibir y enviar los datos en formato JSON a través del RestTemplate.
 public class LibroFrontend {
+    // Los mismos campos que en la API para que coincida todo perfectamente al conectarlos
     private Long id;
     private String titulo;
     private String autor;
@@ -9,6 +12,7 @@ public class LibroFrontend {
     private String imagen;
     private String descripcion;
 
+    // Getters y setters básicos
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
