@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,13 +9,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/css/styles.css">
 </head>
+
 <body>
 
     <div th:replace="~{fragments/navbar :: navbar}"></div>
 
     <div class="container py-5 animate-fade-in">
         <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
-        
+
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="fw-bold m-0"><i class="fas fa-list mt-1 me-2 text-primary"></i> Todos los Libros</h2>
             <a th:href="@{/nuevo}" class="btn btn-primary rounded-pill px-4">
@@ -33,13 +35,12 @@
                         <input type="text" name="autor" class="form-control" placeholder="Buscar por Autor...">
                     </div>
                     <div class="col-md-2">
-                        <input type="number" name="inicio" class="form-control" placeholder="Año Inicio">
-                    </div>
-                    <div class="col-md-2">
-                        <input type="number" name="fin" class="form-control" placeholder="Año Fin">
+                        <input type="text" name="descripcion" class="form-control"
+                            placeholder="Buscar por Descripcion...">
                     </div>
                     <div class="col-md-2 d-grid">
-                        <button type="submit" class="btn btn-outline-light"><i class="fas fa-filter"></i> Filtrar</button>
+                        <button type="submit" class="btn btn-outline-light"><i class="fas fa-filter"></i>
+                            Filtrar</button>
                     </div>
                 </div>
             </form>
@@ -58,6 +59,7 @@
                             <th>Portada</th>
                             <th>Título</th>
                             <th>Autor</th>
+                            <th>Descripción</th>
                             <th>Año</th>
                             <th>Precio</th>
                             <th class="text-end">Acciones</th>
@@ -69,18 +71,22 @@
                         </tr>
                         <tr th:each="libro : ${libros}">
                             <td>
-                                <img th:src="${libro.imagen != null and !libro.imagen.empty ? libro.imagen : 'https://via.placeholder.com/50x70?text=No+Img'}" 
-                                     class="book-cover" alt="Portada">
+                                <img th:src="${libro.imagen != null and !libro.imagen.empty ? libro.imagen : 'https://via.placeholder.com/50x70?text=No+Img'}"
+                                    class="book-cover" alt="Portada">
                             </td>
                             <td class="fw-bold" th:text="${libro.titulo}"></td>
                             <td th:text="${libro.autor}"></td>
+                            <td class="description-cell" th:text="${libro.descripcion}" th:title="${libro.descripcion}">
+                            </td>
                             <td><span class="badge bg-secondary" th:text="${libro.anio}"></span></td>
-                            <td class="text-success fw-bold" th:text="${libro.precio != null ? libro.precio + ' €' : '-'}"></td>
+                            <td class="text-success fw-bold"
+                                th:text="${libro.precio != null ? libro.precio + ' €' : '-'}"></td>
                             <td class="text-end">
                                 <a th:href="@{/editar/{id}(id=${libro.id})}" class="btn btn-sm btn-outline-info me-2">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <a th:href="@{/borrar/{id}(id=${libro.id})}" onclick="return confirm('¿Borrar libro?');" class="btn btn-sm btn-outline-danger">
+                                <a th:href="@{/borrar/{id}(id=${libro.id})}" onclick="return confirm('¿Borrar libro?');"
+                                    class="btn btn-sm btn-outline-danger">
                                     <i class="fas fa-trash"></i>
                                 </a>
                             </td>
@@ -91,4 +97,5 @@
         </div>
     </div>
 </body>
+
 </html>
